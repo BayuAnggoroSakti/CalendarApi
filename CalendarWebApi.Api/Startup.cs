@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Calendar.Api.Settings;
+using CalendarWebApi.Api.Repositories.Appointments;
 using CalendarWebApi.Api.Repositories.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,6 +38,7 @@ namespace CalendarWebApi.Api
             });
 
             services.AddSingleton<IUsersRepository, MongoDbUsersRepository>();
+            services.AddSingleton<IAppointmentsRepository, MongoDbAppointmentsRepository>();
 
             services.AddControllers(options =>
             {
