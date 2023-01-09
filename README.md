@@ -35,6 +35,18 @@ To module run
   cd CalendarWebApi.Api/
   dotnet run
 ```
+## Running with Docker
+To build docker image
+```bash
+  cd CalendarWebApi.Api/
+  docker build -t calendar:v1 .
+```
+
+To run container
+```bash
+  cd CalendarWebApi.Api/
+  docker run -it --rm -p 8080:80 -e MongoDbSettings:Host=mongo calendar:v1
+```
 
 ## Unit Testing
 Using XUNIT
@@ -42,6 +54,7 @@ Using XUNIT
   cd CalendarWebApi.unitTest/
   dotnet test
 ```
+![My Image](Screenshoot/unitTest.JPG)
 
 ## Integration Testing
 Powered By Postman
@@ -51,6 +64,7 @@ Powered By Postman
   /postman/Calendar Api.api.postman_collection.json
   /postman/Calendar Api.api.postman_environtment.json
 ```
+![My Image](Screenshoot/integrationTest.JPG)
 
 ## Tech Stack
 
