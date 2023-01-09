@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "2ZvD35l2mMiWGDdqbRNCQiXLXX4hGtYEPcZvB5NujxnK1N2pB674QFJ76jyuefhG5xNl0eHJP3rKM6cXAyU3uA==",
+  "success": true,
+  "projectFilePath": "E:\\scarlett\\upload\\CalendarWebApi\\CalendarWebApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\bayua\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\bayua\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\bayua\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\bayua\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\bayua\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\bayua\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
