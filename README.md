@@ -45,6 +45,8 @@ Using XUNIT
 
 ## Integration Testing
 Powered By Postman
+
+**Please import the following 2 files into postman:**
 ```bash
   /postman/Calendar Api.api.postman_collection.json
   /postman/Calendar Api.api.postman_environtment.json
