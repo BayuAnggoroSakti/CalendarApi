@@ -66,6 +66,15 @@ Powered By Postman
 ```
 ![My Image](Screenshoot/integrationTest.JPG)
 
+
+## Swager Documentation
+Open URL
+```bash
+  https://localhost:5001/swagger
+```
+![My Image](Screenshoot/swagger.JPG)
+
+
 ## Tech Stack
 
 **Server:** C#,MongoDB, .Net 5
