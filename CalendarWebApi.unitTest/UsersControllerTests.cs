@@ -96,6 +96,73 @@ namespace CalendarWebApi.unitTest
                 User => User.Username == allUsers[0].Username || User.Username == allUsers[2].Username
             );
         }
+
+           [Fact]
+        public async Task CreateUserAsync_WithUserToCreate_ReturnsCreatedUser()
+        {
+            // Arrange
+            var UserToCreate = new CreateUserDto(
+                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString());
+
+            var controller = new UsersController(repositoryStub.Object, loggerStub.Object);
+
+            // Act
+            var result = await controller.CreateUserAsync(UserToCreate);
+
+            // Assert
+            var createdUser = (result.Result as CreatedAtActionResult).Value as UserDto;
+            UserToCreate.Should().BeEquivalentTo(
+                createdUser,
+                options => options.ComparingByMembers<UserDto>().ExcludingMissingMembers()
+            );
+            createdUser.Id.Should().NotBeEmpty();
+            createdUser.CreatedDate.Should().BeCloseTo(DateTimeOffset.UtcNow, 1000);
+        }
+
+         [Fact]
+        public async Task UpdateUserAsync_WithExistingUser_ReturnsNoContent()
+        {
+            // Arrange
+            User existingUser = CreateRandomUser();
+            repositoryStub.Setup(repo => repo.GetUserAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(existingUser);
+
+            var UserId = existingUser.Id;
+            var UserToUpdate = new UpdateUserDto(
+                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString()
+            );
+
+            var controller = new UsersController(repositoryStub.Object, loggerStub.Object);
+
+            // Act
+            var result = await controller.UpdateUserAsync(UserId, UserToUpdate);
+
+            // Assert
+            result.Should().BeOfType<OkObjectResult>();
+        }
+
+        [Fact]
+        public async Task DeleteUserAsync_WithExistingUser_ReturnsNoContent()
+        {
+            // Arrange
+            User existingUser = CreateRandomUser();
+            repositoryStub.Setup(repo => repo.GetUserAsync(It.IsAny<Guid>()))
+                .ReturnsAsync(existingUser);
+
+            var controller = new UsersController(repositoryStub.Object, loggerStub.Object);
+
+            // Act
+            var result = await controller.DeleteUserAsync(existingUser.Id);
+
+            // Assert
+            result.Should().BeOfType<OkObjectResult>();
+        }
+
+
         private User CreateRandomUser()
         {
             return new()
