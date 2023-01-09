@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using CalendarWebApi.Dtos;
-using CalendarWebApi.Entities;
-using CalendarWebApi.Repositories.Users;
+using CalendarWebApi.Api.Dtos;
+using CalendarWebApi.Api.Entities;
+using CalendarWebApi.Api.Repositories.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace CalendarWebApi.Controllers
+namespace CalendarWebApi.Api.Controllers
 {
     [ApiController]
     [Route("users")]

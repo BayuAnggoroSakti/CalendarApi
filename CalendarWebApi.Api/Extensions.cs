@@ -1,7 +1,7 @@
-using CalendarWebApi.Dtos;
-using CalendarWebApi.Entities;
+using CalendarWebApi.Api.Dtos;
+using CalendarWebApi.Api.Entities;
 
-namespace CalendarWebApi
+namespace CalendarWebApi.Api
 {
     public static class Extensions
     {

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CalendarWebApi.Entities;
+using CalendarWebApi.Api.Entities;
 
-namespace CalendarWebApi.Repositories.Users
+namespace CalendarWebApi.Api.Repositories.Users
 {
     public interface IUsersRepository
     {

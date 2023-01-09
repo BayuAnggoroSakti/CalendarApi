@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CalendarWebApi
+namespace CalendarWebApi.Api
 {
     public class Program
     {

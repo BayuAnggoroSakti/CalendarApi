@@ -1,6 +1,6 @@
 using System;
 
-namespace CalendarWebApi.Entities
+namespace CalendarWebApi.Api.Entities
 {
     public class User
     {

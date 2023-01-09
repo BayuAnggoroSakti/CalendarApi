@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CalendarWebApi.Entities;
+using CalendarWebApi.Api.Entities;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace CalendarWebApi.Repositories.Users
+namespace CalendarWebApi.Api.Repositories.Users
 {
     public class MongoDbUsersRepository : IUsersRepository
     {
