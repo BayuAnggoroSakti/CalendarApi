@@ -20,17 +20,19 @@ namespace CalendarWebApi.Api.Repositories.Users
             usersCollection = database.GetCollection<User>(collectionName);
         }
 
-        public Task CreateUserAsync(User user)
+      
+         public async Task CreateUserAsync(User user)
         {
-            throw new NotImplementedException();
+             await usersCollection.InsertOneAsync(user);
         }
 
-        public Task DeleteUserAsync(Guid id)
+        public async Task DeleteUserAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(user => user.Id, id);
+            await usersCollection.DeleteOneAsync(filter);
         }
 
-         public async Task<User> GetUserAsync(Guid id)
+        public async Task<User> GetUserAsync(Guid id)
         {
             var filter = filterBuilder.Eq(user => user.Id, id);
             return await usersCollection.Find(filter).SingleOrDefaultAsync();
@@ -47,10 +49,10 @@ namespace CalendarWebApi.Api.Repositories.Users
             return await usersCollection.Find(new BsonDocument()).ToListAsync();
         }
 
-
-        public Task UpdateUserAsync(User user)
+        public async Task UpdateUserAsync(User user)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(existingUser => existingUser.Id, user.Id);
+            await usersCollection.ReplaceOneAsync(filter, user);
         }
     }
 }

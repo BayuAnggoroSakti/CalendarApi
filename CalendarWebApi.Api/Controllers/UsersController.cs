@@ -54,5 +54,67 @@ namespace CalendarWebApi.Api.Controllers
 
             return user.AsDto();
         }
+
+          // POST /Users
+        [HttpPost]
+        public async Task<ActionResult<UserDto>> CreateUserAsync(CreateUserDto userDto)
+        {
+            //check username existing
+            var dataUsers = (await repository.GetUsersAsync())
+                        .Select(user => user.AsDto());
+            dataUsers = dataUsers.Where(user => user.Username.Contains(userDto.username, StringComparison.OrdinalIgnoreCase));
+            if (dataUsers.Count() > 0)
+            {
+                return BadRequest(new { status = false, message = "Cannot insert duplicate username"});
+            }
+            string passwordHash = BCrypt.Net.BCrypt.HashPassword(userDto.password);
+            User user = new()
+            {
+                Id = Guid.NewGuid(),
+                Username = userDto.username,
+                Password = passwordHash,
+                FullName = userDto.fullname,
+                CreatedDate = DateTimeOffset.UtcNow
+            };
+
+            await repository.CreateUserAsync(user);
+
+            return CreatedAtAction(nameof(GetUsersAsync), new { id = user.Id }, user.AsDto());
+        }
+
+        // // PUT /Users/{id}
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateUserAsync(Guid id, UpdateUserDto userDto)
+        {
+            var existingUser = await repository.GetUserAsync(id);
+
+            if (existingUser is null)
+            {
+                return NotFound();
+            }
+
+            existingUser.FullName = userDto.fullname;
+            existingUser.Username = userDto.username;
+
+            await repository.UpdateUserAsync(existingUser);
+
+            return Ok(new { status = true, message = "Update user is succesfully"});
+        }
+
+        // DELETE /Users/{id}
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteUserAsync(Guid id)
+        {
+            var existingUser = await repository.GetUserAsync(id);
+
+            if (existingUser is null)
+            {
+                return NotFound();
+            }
+
+            await repository.DeleteUserAsync(id);
+
+             return Ok(new { status = true, message = "Delete user is succesfully"});
+        }
     }
 }
